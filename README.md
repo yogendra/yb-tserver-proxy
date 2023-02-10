@@ -33,3 +33,16 @@ This is useful in non-production use-cases:
     and apply changed. This will create a load balancer service that can be
     connected to any time. Note that this requires your kubernetes cluster to
     have load balancer provisioning capability (MetlaLB, Cloud LB, NSX-T, ASX-ALB, etc.)
+
+4. Access database with any client like ysqlsh
+
+    ```bash
+    ysqlsh -c "SELECT inet_server_addr();"
+    ```
+
+## Troubleshooting
+
+### Connection to DB stops frequently
+
+Default timeout for the connection is 30s on the LB. You can change that by
+setting `proxy_timeout`.
